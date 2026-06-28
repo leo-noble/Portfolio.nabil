@@ -156,8 +156,8 @@ body::after{
 .lcol{display:flex;flex-direction:column;gap:8px;}
 .lc{
   position:relative;overflow:hidden;
-  display:flex;align-items:center;gap:16px;
-  padding:20px 22px;
+  display:flex;align-items:center;gap:18px;
+  padding:24px 26px;
   background:var(--surf);
   border:1px solid var(--border);
   border-radius:var(--r);
@@ -184,8 +184,8 @@ body::after{
 .lc-gh:hover{border-color:rgba(232,234,240,.2);background:linear-gradient(110deg,rgba(232,234,240,.03) 0%,var(--surf-h) 60%);}
 
 .lc-ico{
-  width:48px;height:48px;flex-shrink:0;
-  border-radius:14px;
+  width:54px;height:54px;flex-shrink:0;
+  border-radius:15px;
   display:flex;align-items:center;justify-content:center;
   transition:background var(--t),border-color var(--t),transform .5s cubic-bezier(.34,1.56,.64,1);
   border:1px solid transparent;
@@ -253,7 +253,7 @@ body::after{
   background:var(--surf);
   border:1px solid var(--border);
   border-radius:var(--r);
-  padding:24px 22px;
+  padding:30px 26px;
   display:flex;flex-direction:column;gap:12px;
   transition:transform var(--t),border-color var(--t),background var(--t),box-shadow var(--t);
   cursor:pointer;
@@ -267,8 +267,8 @@ body::after{
 .pc:hover{background:var(--surf-h);border-color:rgba(201,168,76,.25);transform:translateY(-4px);box-shadow:0 20px 56px rgba(0,0,0,.55),0 0 0 1px rgba(201,168,76,.06);}
 
 .pc-top{display:flex;align-items:flex-start;justify-content:space-between;}
-.pc-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:transform .5s cubic-bezier(.34,1.56,.64,1);}
-.pc-ico svg{width:44px;height:44px;}
+.pc-ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:transform .5s cubic-bezier(.34,1.56,.64,1);}
+.pc-ico svg{width:52px;height:52px;}
 .pc-ico-default{background:var(--gold-dim);color:var(--gold);}
 .pc-ico-default svg{width:20px;height:20px;}
 .pc:hover .pc-ico{transform:scale(1.07) rotate(-4deg);}
@@ -357,7 +357,7 @@ body::after{
   .wrap{padding:40px 16px 40px;gap:46px;}
   .pgrid{grid-template-columns:1fr;}
   .hname{font-size:clamp(48px,17vw,68px);}
-  .lc{padding:13px 14px;}
+  .lc{padding:16px 16px;}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -500,26 +500,20 @@ body::after{
         <div class="pc-top">
           <div class="pc-ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="sd4-bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0c0c1a"/><stop offset="100%" stop-color="#080810"/>
+    <linearGradient id="sd-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7B72E9"/>
+      <stop offset="100%" stop-color="#3A2FA4"/>
     </linearGradient>
-    <linearGradient id="sd4-card" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1e30a2"/><stop offset="100%" stop-color="#2b1d9b"/>
-    </linearGradient>
-    <linearGradient id="sd4-fold" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6272f2"/><stop offset="100%" stop-color="#4856d8"/>
-    </linearGradient>
-    <filter id="sd4-shadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="rgba(22,38,150,0.65)"/>
-    </filter>
   </defs>
-  <rect width="100" height="100" rx="22" fill="url(#sd4-bg)"/>
-  <path d="M21,11 Q12,11 12,20 L12,81 Q12,89 21,89 L79,89 Q88,89 88,80 L88,30 L68,11 Z" fill="url(#sd4-card)" filter="url(#sd4-shadow)"/>
-  <path d="M21,11 Q12,11 12,20 L12,81 Q12,89 21,89 L79,89 Q88,89 88,80 L88,30 L68,11 Z" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
-  <path d="M21,11 L68,11 L88,30 L88,37 L12,37 L12,20 Q12,11 21,11 Z" fill="rgba(255,255,255,0.06)"/>
-  <path d="M68,11 L68,30 L88,30 Z" fill="url(#sd4-fold)"/>
-  <line x1="68" y1="11" x2="88" y2="30" stroke="rgba(0,0,0,0.32)" stroke-width="1.3"/>
-  <path d="M68,30 L88,30" fill="none" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
+  <rect width="100" height="100" rx="22" fill="url(#sd-bg)"/>
+  <!-- Left page -->
+  <path d="M49,30 C49,30 45,27 37,27 L24,27 C20,27 17,30 17,34 L17,67 C17,67 30,64 49,67 Z"
+        fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Right page -->
+  <path d="M51,30 C51,30 55,27 63,27 L76,27 C80,27 83,30 83,34 L83,67 C83,67 70,64 51,67 Z"
+        fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Spine tip -->
+  <line x1="50" y1="67" x2="50" y2="74" stroke="white" stroke-width="5" stroke-linecap="round"/>
 </svg></div>
           <span class="pc-live">Live</span>
         </div>
