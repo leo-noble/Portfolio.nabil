@@ -33,10 +33,25 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+/* Frozen at frame 0 until JS confirms the page is actually visible to a
+   person (see script at bottom) — stops in-app-browser prefetches from
+   burning through these once-only animations before anyone's looking. */
+html:not(.anim-ready) .hero,
+html:not(.anim-ready) .av-wrap,
+html:not(.anim-ready) .av-halo,
+html:not(.anim-ready) .hn-word span,
+html:not(.anim-ready) .hname em,
+html:not(.anim-ready) .badge,
+html:not(.anim-ready) .bio .w,
+html:not(.anim-ready) .bio .accent,
+html:not(.anim-ready) .footer{
+  animation-play-state:paused;
+}
 html{scroll-behavior:smooth;}
 body{
   background:var(--bg);color:var(--ink);
-  font-family:var(--fB);font-size:15px;line-height:1.6;
+  font-family:var(--fB);font-size:16.5px;line-height:1.6;
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   font-weight:400;
@@ -69,7 +84,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 /* ── HERO ── */
 .hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px;opacity:0;animation:rise 1s var(--ease) .05s forwards;}
 
-.av-wrap{position:relative;width:132px;height:132px;flex-shrink:0;animation:avFloat 6s ease-in-out infinite,irisIn .9s var(--ease) .1s both;}
+.av-wrap{position:relative;width:150px;height:150px;flex-shrink:0;animation:avFloat 6s ease-in-out infinite,irisIn .9s var(--ease) .1s both;}
 .av-halo{
   position:absolute;inset:-7px;border-radius:50%;
   background:conic-gradient(from 0deg,var(--accent),#7b6be9,#ecd9ab,var(--accent));
@@ -88,7 +103,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 .av-img{width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:saturate(.95);}
 
 .hero-text{display:flex;flex-direction:column;align-items:center;gap:22px;}
-.hname{font-family:var(--fD);font-weight:500;font-size:clamp(44px,11vw,58px);line-height:1.06;letter-spacing:-.01em;color:var(--ink);}
+.hname{font-family:var(--fD);font-weight:500;font-size:clamp(48px,12vw,64px);line-height:1.06;letter-spacing:-.01em;color:var(--ink);}
 .hn-word{display:inline-block;overflow:hidden;vertical-align:top;}
 .hn-word span{display:inline-block;animation:wordRise .8s var(--ease) .15s both;}
 @keyframes wordRise{from{transform:translateY(100%);}to{transform:translateY(0);}}
@@ -96,7 +111,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 @keyframes nameShine{0%,100%{background-position:0% 0;}50%{background-position:100% 0;}}
 
 .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:-4px;}
-.badge{font-size:11px;font-weight:500;letter-spacing:.03em;padding:5px 13px;border-radius:99px;background:var(--surf);border:1px solid var(--line);color:var(--ink-dim);transition:transform var(--t),border-color var(--t),color var(--t),background var(--t);opacity:0;animation:badgeIn .6s var(--ease) forwards;}
+.badge{font-size:12px;font-weight:500;letter-spacing:.03em;padding:6px 15px;border-radius:99px;background:var(--surf);border:1px solid var(--line);color:var(--ink-dim);transition:transform var(--t),border-color var(--t),color var(--t),background var(--t);opacity:0;animation:badgeIn .6s var(--ease) forwards;}
 .badges .badge:nth-child(1){animation-delay:.5s;}
 .badges .badge:nth-child(2){animation-delay:.58s;}
 .badges .badge:nth-child(3){animation-delay:.66s;}
@@ -108,7 +123,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 /* ── BIO: spotlight backdrop + word cascade + ambient accent + caret ── */
 .bio{
   position:relative;
-  font-size:14.5px;color:var(--ink-dim);max-width:380px;
+  font-size:16px;color:var(--ink-dim);max-width:420px;
   line-height:1.9;font-weight:400;
   padding:2px 0;
 }
@@ -185,10 +200,10 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 .sec.on{opacity:1;transform:translateY(0);}
 
 .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;}
-.sec-label{font-family:var(--fB);font-weight:500;color:var(--ink-dim);text-transform:uppercase;font-size:11.5px;letter-spacing:.14em;white-space:nowrap;}
+.sec-label{font-family:var(--fB);font-weight:500;color:var(--ink-dim);text-transform:uppercase;font-size:12.5px;letter-spacing:.14em;white-space:nowrap;}
 .sec-line{flex:1;height:1px;background:var(--line);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .15s;}
 .sec.on .sec-line{transform:scaleX(1);}
-.sec-count{font-size:11px;color:var(--ink-faint);letter-spacing:.04em;font-family:var(--fB);}
+.sec-count{font-size:12px;color:var(--ink-faint);letter-spacing:.04em;font-family:var(--fB);}
 
 /* ── LINK CARDS ── */
 .lcol{display:flex;flex-direction:column;}
@@ -216,7 +231,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 .lc:hover::before,.lc:active::before{transform:translateX(0);}
 
 .lc-ico{
-  width:38px;height:38px;flex-shrink:0;
+  width:42px;height:42px;flex-shrink:0;
   border-radius:10px;
   display:flex;align-items:center;justify-content:center;
   background:var(--surf);border:1px solid var(--line);
@@ -224,12 +239,12 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
   transition:transform .4s var(--ease),background var(--t),border-color var(--t),color var(--t),box-shadow .4s var(--ease);
   position:relative;z-index:1;
 }
-.lc-ico svg{width:16px;height:16px;}
+.lc-ico svg{width:18px;height:18px;}
 .lc:hover .lc-ico,.lc:active .lc-ico{background:var(--surf-h);border-color:var(--line-h);color:var(--ink);transform:scale(1.12) rotate(-6deg);box-shadow:0 8px 18px -10px rgba(0,0,0,.5);}
 
 .lc-body{flex:1;min-width:0;display:flex;flex-direction:column;position:relative;z-index:1;}
-.lc-name{font-size:14.5px;font-weight:500;color:var(--ink);letter-spacing:-.01em;transition:color .35s var(--ease),transform .35s var(--ease);display:inline-block;}
-.lc-sub{font-size:12px;color:var(--ink-faint);margin-top:1px;letter-spacing:.01em;}
+.lc-name{font-size:16px;font-weight:500;color:var(--ink);letter-spacing:-.01em;transition:color .35s var(--ease),transform .35s var(--ease);display:inline-block;}
+.lc-sub{font-size:13px;color:var(--ink-faint);margin-top:1px;letter-spacing:.01em;}
 .lc:hover .lc-name,.lc:active .lc-name{color:var(--accent);transform:translateX(2px);}
 
 .lc-arr{color:var(--ink-faint);transition:var(--t);flex-shrink:0;position:relative;z-index:1;}
@@ -261,7 +276,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
   background:var(--surf);
   border:1px solid var(--line);
   border-radius:18px;
-  padding:26px 26px;
+  padding:28px 26px;
   display:flex;align-items:center;gap:20px;
   transition:background var(--t),border-color var(--t),box-shadow var(--t),transform .45s var(--ease);
   cursor:pointer;
@@ -301,13 +316,20 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 .pc-violet.pc-touch .pc-title{color:#a89bff;}
 .pc-violet::after{background:linear-gradient(120deg,transparent 30%,rgba(139,123,255,.55),transparent 70%);background-size:220% 220%;background-position:130% 0;}
 
-.pc-ico{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;transition:transform .5s var(--ease),box-shadow .5s var(--ease);box-shadow:0 8px 20px -12px rgba(0,0,0,.5);}
-.pc-ico svg{width:52px;height:52px;display:block;}
+.pc-teal{background:linear-gradient(165deg,rgba(26,122,104,.10),var(--surf) 55%);}
+.pc-teal:hover{border-color:rgba(58,168,140,.35);box-shadow:0 18px 44px -22px rgba(11,79,71,.45),0 0 0 1px rgba(58,168,140,.1);}
+.pc-teal:hover .pc-title{color:#6bcbae;}
+.pc-teal.pc-touch{border-color:rgba(58,168,140,.35);box-shadow:0 18px 44px -22px rgba(11,79,71,.45),0 0 0 1px rgba(58,168,140,.1);}
+.pc-teal.pc-touch .pc-title{color:#6bcbae;}
+.pc-teal::after{background:linear-gradient(120deg,transparent 30%,rgba(58,168,140,.55),transparent 70%);background-size:220% 220%;background-position:130% 0;}
+
+.pc-ico{width:58px;height:58px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;transition:transform .5s var(--ease),box-shadow .5s var(--ease);box-shadow:0 8px 20px -12px rgba(0,0,0,.5);}
+.pc-ico svg{width:58px;height:58px;display:block;}
 .pc:hover .pc-ico,.pc.pc-touch .pc-ico{transform:scale(1.08) rotate(-4deg);box-shadow:0 14px 28px -10px rgba(0,0,0,.6);}
 
 .pc-body{flex:1;min-width:0;}
 .pc-title-row{display:flex;align-items:center;gap:8px;}
-.pc-title{font-family:var(--fD);font-weight:500;font-size:18.5px;color:var(--ink);letter-spacing:-.01em;transition:color var(--t);}
+.pc-title{font-family:var(--fD);font-weight:500;font-size:20px;color:var(--ink);letter-spacing:-.01em;transition:color var(--t);}
 .pc:hover .pc-title,.pc.pc-touch .pc-title{color:var(--accent);}
 .pc-live{position:absolute;top:18px;right:18px;z-index:2;display:flex;align-items:center;gap:5px;font-size:9.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#7fe3a3;background:rgba(10,14,10,.55);backdrop-filter:blur(6px);border:1px solid rgba(74,222,128,.3);padding:4px 10px 4px 8px;border-radius:99px;}
 .pc-live::before{content:'';width:4px;height:4px;border-radius:50%;background:#4ade80;animation:livePulse 2s ease-in-out infinite;position:relative;z-index:1;}
@@ -317,8 +339,8 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 .pc-beta::after{background:transparent;border:1px solid #e8c373;animation:liveRing 2s ease-out infinite;}
 @keyframes livePulse{0%,100%{opacity:.5;}50%{opacity:1;}}
 @keyframes liveRing{0%{transform:scale(1);opacity:.5;}100%{transform:scale(2.6);opacity:0;}}
-.pc-desc{font-size:13px;color:var(--ink-dim);line-height:1.6;margin-top:4px;max-width:88%;}
-.pc-url{font-family:var(--fB);font-size:11px;color:var(--ink-faint);letter-spacing:.01em;margin-top:8px;}
+.pc-desc{font-size:14px;color:var(--ink-dim);line-height:1.6;margin-top:4px;max-width:92%;}
+.pc-url{font-family:var(--fB);font-size:12px;color:var(--ink-faint);letter-spacing:.01em;margin-top:8px;}
 
 .pc-go{color:var(--ink-faint);transition:var(--t);flex-shrink:0;position:relative;z-index:1;}
 .pc-go svg{width:16px;height:16px;}
@@ -327,14 +349,14 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 
 /* ── FOOTER ── */
 .footer{text-align:center;padding-top:8px;opacity:0;animation:rise .7s var(--ease) 1s forwards;}
-.ft-name{font-family:var(--fD);font-style:italic;font-weight:400;font-size:14px;color:var(--ink-dim);}
-.ft-copy{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.02em;}
+.ft-name{font-family:var(--fD);font-style:italic;font-weight:400;font-size:15px;color:var(--ink-dim);}
+.ft-copy{font-size:12px;color:var(--ink-faint);margin-top:6px;letter-spacing:.02em;}
 
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:480px){
   .wrap{padding:64px 20px 48px;gap:64px;}
-  .hname{font-size:clamp(34px,10vw,44px);}
+  .hname{font-size:clamp(37px,10.5vw,48px);}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -430,7 +452,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
     <div class="sec-head">
       <p class="sec-label">Things I made</p>
       <span class="sec-line"></span>
-      <p class="sec-count">02</p>
+      <p class="sec-count">03</p>
     </div>
     <div class="pgrid">
 
@@ -482,6 +504,29 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
         <span class="pc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
       </a>
 
+      <a href="https://mihrabb.vercel.app/" target="_blank" rel="noopener" class="pc pc-teal">
+        <span class="pc-live pc-beta">Beta</span>
+        <div class="pc-ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mhb-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a7a68"/>
+      <stop offset="100%" stop-color="#0b4f47"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#mhb-bg)"/>
+  <path d="M35,73 L35,46 C35,32 42,21 50,21 C58,21 65,32 65,46 L65,73"
+        fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="29" y1="73" x2="71" y2="73" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="50" cy="33" r="3.2" fill="white"/>
+</svg></div>
+        <div class="pc-body">
+          <div class="pc-title-row"><span class="pc-title">Mihrab</span></div>
+          <p class="pc-desc">Prayer times, duas, and daily reflection journaling.</p>
+          <p class="pc-url">mihrabb.vercel.app</p>
+        </div>
+        <span class="pc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </a>
+
     </div>
   </section>
 
@@ -496,6 +541,36 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 <script>
 (function(){
   "use strict";
+
+  /* Social in-app browsers (Instagram/TikTok/X) commonly prefetch a bio
+     link in a hidden webview before the user taps in — CSS animations
+     and IntersectionObserver still run during that hidden phase, so by
+     the time the page is actually shown, entrance animations have
+     already fast-forwarded to their end frame. Nothing to fix without
+     a manual refresh. Gate everything behind real visibility instead. */
+  const root=document.documentElement;
+  let ready=(document.visibilityState==='visible');
+  const readyWaiters=[];
+  function onReady(fn){ ready?fn():readyWaiters.push(fn); }
+  function markReady(){
+    if(ready) return;
+    ready=true;
+    root.classList.add('anim-ready');
+    document.querySelectorAll('.bio .caret').forEach(c=>{c.style.animationPlayState='running';});
+    readyWaiters.forEach(fn=>fn());
+    readyWaiters.length=0;
+  }
+  if(ready){ root.classList.add('anim-ready'); }
+  else {
+    const onVis=()=>{
+      if(document.visibilityState==='visible'){
+        document.removeEventListener('visibilitychange',onVis);
+        markReady();
+      }
+    };
+    document.addEventListener('visibilitychange',onVis);
+  }
+
   const setScroll=()=>{
     const h=document.documentElement;
     const max=h.scrollHeight-h.clientHeight;
@@ -504,7 +579,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
   window.addEventListener('scroll',setScroll,{passive:true});
   setScroll();
   const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}}),{threshold:0.08});
-  document.querySelectorAll('.sec').forEach(s=>io.observe(s));
+  onReady(()=>document.querySelectorAll('.sec').forEach(s=>io.observe(s)));
 
   const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
@@ -612,6 +687,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
         if(!reduced){
           const cd=accentDelay+0.75;
           node.style.animation=`caretIn .3s var(--ease) forwards ${cd}s, caretBreathe 1.8s ease-in-out infinite ${cd+0.3}s`;
+          node.style.animationPlayState=ready?'running':'paused';
         }
       }
     });
