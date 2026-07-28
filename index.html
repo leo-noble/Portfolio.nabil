@@ -265,25 +265,28 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 .sec.on .lcol .lc:nth-child(4){animation-delay:.18s;}
 .sec.on .pgrid .pc:nth-child(1){animation-delay:.05s;}
 .sec.on .pgrid .pc:nth-child(2){animation-delay:.11s;}
+.sec.on .pgrid .pc:nth-child(3){animation-delay:.17s;}
+.sec.on .pgrid .pc:nth-child(4){animation-delay:.23s;}
 @keyframes cardReveal{from{opacity:0;transform:translateY(14px) scale(.97);filter:blur(4px);}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}}
 
 .lc:focus-visible,.pc:focus-visible{outline:1.5px solid var(--accent);outline-offset:3px;border-radius:4px;}
 
 /* ── PROJECT CARDS ── */
-.pgrid{display:flex;flex-direction:column;gap:14px;}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
 .pc{
   position:relative;
   background:var(--surf);
   border:1px solid var(--line);
   border-radius:18px;
-  padding:28px 26px;
-  display:flex;align-items:center;gap:20px;
+  padding:22px 20px;
+  display:flex;flex-direction:column;align-items:flex-start;gap:14px;
   transition:background var(--t),border-color var(--t),box-shadow var(--t),transform .45s var(--ease);
   cursor:pointer;
   overflow:hidden;
   transform-style:preserve-3d;
   will-change:transform;
   box-shadow:0 10px 30px -22px rgba(0,0,0,.6);
+  height:100%;
 }
 .pc::before{
   content:'';
@@ -327,7 +330,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 .pc-ico svg{width:58px;height:58px;display:block;}
 .pc:hover .pc-ico,.pc.pc-touch .pc-ico{transform:scale(1.08) rotate(-4deg);box-shadow:0 14px 28px -10px rgba(0,0,0,.6);}
 
-.pc-body{flex:1;min-width:0;}
+.pc-body{flex:1;min-width:0;width:100%;}
 .pc-title-row{display:flex;align-items:center;gap:8px;}
 .pc-title{font-family:var(--fD);font-weight:500;font-size:20px;color:var(--ink);letter-spacing:-.01em;transition:color var(--t);}
 .pc:hover .pc-title,.pc.pc-touch .pc-title{color:var(--accent);}
@@ -339,12 +342,35 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
 .pc-beta::after{background:transparent;border:1px solid #e8c373;animation:liveRing 2s ease-out infinite;}
 @keyframes livePulse{0%,100%{opacity:.5;}50%{opacity:1;}}
 @keyframes liveRing{0%{transform:scale(1);opacity:.5;}100%{transform:scale(2.6);opacity:0;}}
-.pc-desc{font-size:14px;color:var(--ink-dim);line-height:1.6;margin-top:4px;max-width:92%;}
-.pc-url{font-family:var(--fB);font-size:12px;color:var(--ink-faint);letter-spacing:.01em;margin-top:8px;}
+.pc-desc{font-size:13.5px;color:var(--ink-dim);line-height:1.55;margin-top:4px;max-width:100%;}
+.pc-url{font-family:var(--fB);font-size:11.5px;color:var(--ink-faint);letter-spacing:.01em;margin-top:8px;}
 
-.pc-go{color:var(--ink-faint);transition:var(--t);flex-shrink:0;position:relative;z-index:1;}
+.pc-go{color:var(--ink-faint);transition:var(--t);flex-shrink:0;position:absolute;bottom:20px;right:20px;z-index:1;}
 .pc-go svg{width:16px;height:16px;}
 .pc:hover .pc-go{color:var(--accent);transform:translate(3px,-3px) rotate(8deg);}
+
+/* ── COMING SOON CARD ── */
+.pc-soon{
+  background:transparent;
+  border:1px dashed var(--line-h);
+  box-shadow:none;
+  cursor:default;
+  justify-content:center;
+  min-height:100%;
+}
+.pc-soon::before,.pc-soon::after{display:none;}
+.pc-soon:hover{transform:none;border-color:var(--line-h);box-shadow:none;}
+.pc-soon .pc-ico{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--surf);border:1px solid var(--line);
+  color:var(--ink-faint);box-shadow:none;
+}
+.pc-soon .pc-ico svg{width:18px;height:18px;}
+.pc-soon .pc-title{color:var(--ink-dim);font-size:16px;}
+.pc-soon .pc-desc{color:var(--ink-faint);}
+@media(max-width:480px){
+  .pgrid{grid-template-columns:1fr;}
+}
 
 
 /* ── FOOTER ── */
@@ -447,7 +473,7 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
     <div class="sec-head">
       <p class="sec-label">Things I made</p>
       <span class="sec-line"></span>
-      <p class="sec-count">03</p>
+      <p class="sec-count">04</p>
     </div>
     <div class="pgrid">
 
@@ -515,6 +541,14 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
         </div>
         <span class="pc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
       </a>
+
+      <div class="pc pc-soon">
+        <div class="pc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="pc-body">
+          <div class="pc-title-row"><span class="pc-title">Coming soon</span></div>
+          <p class="pc-desc">Something new is in the works.</p>
+        </div>
+      </div>
 
     </div>
   </section>
@@ -703,6 +737,75 @@ button{border:none;background:none;font:inherit;cursor:pointer;}
     });
   }
 })();
+</script>
+
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+  const supabase = createClient(
+    'https://vlapseizgtdvektmfkkg.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsYXBzZWl6Z3RkdmVrdG1ma2tnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUyMDI0MjQsImV4cCI6MjEwMDc3ODQyNH0.CGX1vVAt31q9ONuz9Tmderf34PKS_pXUEYIXn626IH8'
+  );
+
+  const soonSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>';
+  const goSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>';
+
+  function cleanUrl(u){ return (u||'').replace(/^https?:\/\//,'').replace(/\/$/,''); }
+  function esc(s){ return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  async function loadProfile(){
+    try{
+      const { data } = await supabase.from('profile').select('*').eq('id',1).single();
+      if(data && data.image_url){
+        const img = document.querySelector('.av-img');
+        if(img) img.src = data.image_url;
+      }
+    }catch(e){ /* keep fallback image */ }
+  }
+
+  async function loadProjects(){
+    try{
+      const { data, error } = await supabase.from('projects').select('*').order('sort_order',{ascending:true});
+      if(error || !data || !data.length) return; // keep hardcoded fallback markup
+      const grid = document.querySelector('.pgrid');
+      if(!grid) return;
+      grid.innerHTML = '';
+      data.forEach(p=>{
+        const a = document.createElement('a');
+        a.href = p.url || '#';
+        a.target = '_blank'; a.rel = 'noopener';
+        a.className = 'pc pc-' + (p.theme || 'violet');
+        const badge = p.status === 'beta'
+          ? '<span class="pc-live pc-beta">Beta</span>'
+          : (p.status === 'none' ? '' : '<span class="pc-live">Live</span>');
+        a.innerHTML = `
+          ${badge}
+          <div class="pc-ico">${p.logo_svg || ''}</div>
+          <div class="pc-body">
+            <div class="pc-title-row"><span class="pc-title">${esc(p.title)}</span></div>
+            <p class="pc-desc">${esc(p.description)}</p>
+            <p class="pc-url">${esc(cleanUrl(p.url))}</p>
+          </div>
+          <span class="pc-go">${goSVG}</span>
+        `;
+        grid.appendChild(a);
+      });
+      const soon = document.createElement('div');
+      soon.className = 'pc pc-soon';
+      soon.innerHTML = `
+        <div class="pc-ico">${soonSVG}</div>
+        <div class="pc-body">
+          <div class="pc-title-row"><span class="pc-title">Coming soon</span></div>
+          <p class="pc-desc">Something new is in the works.</p>
+        </div>
+      `;
+      grid.appendChild(soon);
+      const count = document.querySelector('.sec-count');
+      if(count) count.textContent = String(data.length + 1).padStart(2,'0');
+    }catch(e){ /* keep hardcoded fallback markup */ }
+  }
+
+  loadProfile();
+  loadProjects();
 </script>
 </body>
 </html>
